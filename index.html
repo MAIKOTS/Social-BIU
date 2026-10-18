@@ -44,6 +44,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* FOTO */
     .avatar {
       width: 130px;
       height: 130px;
@@ -63,11 +64,93 @@
       font-size: 0.95rem;
       line-height: 1.6;
       color: #cbd5e1;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       padding: 0 10px;
     }
 
-    .links { display: flex; flex-direction: column; gap: 14px; }
+    /* ===== STATS (visitas + curtidas) ===== */
+    .stats {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .stat-chip,
+    .like-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-chip strong,
+    .like-btn strong {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .stat-chip i { color: var(--accent); font-size: 1rem; }
+
+    .like-btn {
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .like-btn i {
+      color: var(--muted);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .like-btn:hover {
+      border-color: rgba(236, 72, 153, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .like-btn.liked {
+      background: rgba(236, 72, 153, 0.15);
+      border-color: rgba(236, 72, 153, 0.6);
+      animation: likeGlow 2s ease-in-out infinite;
+    }
+
+    .like-btn.liked i,
+    .like-btn.liked strong {
+      color: #fbcfe8;
+    }
+
+    .like-btn.liked i {
+      animation: heartPop 0.4s ease;
+    }
+
+    @keyframes heartPop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.5); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes likeGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+      50%      { box-shadow: 0 0 20px 0 rgba(236, 72, 153, 0.3); }
+    }
+
+    /* ===== LINKS ===== */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
     .link {
       display: flex;
@@ -83,9 +166,26 @@
       font-size: 1rem;
       backdrop-filter: blur(10px);
       transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.5s ease backwards;
     }
 
-    .link i { font-size: 1.3rem; width: 26px; text-align: center; }
+    .link:nth-child(1) { animation-delay: 0.10s; }
+    .link:nth-child(2) { animation-delay: 0.18s; }
+    .link:nth-child(3) { animation-delay: 0.26s; }
+    .link:nth-child(4) { animation-delay: 0.34s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .link i {
+      font-size: 1.3rem;
+      width: 26px;
+      text-align: center;
+    }
 
     .link:hover {
       transform: translateY(-3px);
@@ -94,9 +194,44 @@
       box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
     }
 
-    .link:active { transform: translateY(-1px); }
+    .link:active { transform: translateY(-1px) scale(0.98); }
 
-    footer { margin-top: 40px; font-size: 0.8rem; color: var(--muted); }
+    /* ===== BOTÃO COMPARTILHAR ===== */
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 14px 20px;
+      width: 100%;
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .share-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(168, 85, 247, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .share-btn:active { transform: translateY(0) scale(0.98); }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
 
     /* Aviso do navegador interno do Instagram */
     .inapp-banner {
@@ -122,6 +257,53 @@
       cursor: pointer;
       font-size: 0.85rem;
     }
+
+    /* ===== RIPPLE ===== */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(0);
+      animation: rippleAnim 0.6s ease-out;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(30, 30, 46, 0.95);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      z-index: 1000;
+      pointer-events: none;
+      max-width: 90%;
+      text-align: center;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,9 +325,20 @@
       📍 Ceará, Brasil
     </p>
 
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-chip" title="Visitas no site">
+        <i class="fa-solid fa-eye"></i>
+        <strong id="visitCount">—</strong>
+      </div>
+      <button class="like-btn" id="likeBtn" type="button" title="Curtir perfil">
+        <i class="fa-regular fa-heart" id="likeIcon"></i>
+        <strong id="likeCount">—</strong>
+      </button>
+    </div>
+
     <div class="links">
 
-      <!-- INSTAGRAM -->
       <a class="link"
          href="https://www.instagram.com/maikots.ofc"
          data-deeplink="instagram://user?username=maikots.ofc"
@@ -154,16 +347,15 @@
         <span>Instagram</span>
       </a>
 
-      <!-- YOUTUBE -->
-<a class="link" 
-   href="https://youtube.com/@maikots" 
-   data-deeplink="vnd.youtube://channel/UCjiRpNFwjzChM_WOtT9ZudQ" 
-   data-android="intent://channel/UCjiRpNFwjzChM_WOtT9ZudQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fyoutube.com%2F%40maikots;end"
-   target="_blank" rel="noopener">
-  <i class="fa-brands fa-youtube"></i>
-  <span>YouTube</span>
-</a>
-      <!-- WHATSAPP (⚠️ troque o número abaixo) -->
+      <a class="link"
+         href="https://youtube.com/@maikots"
+         data-deeplink="vnd.youtube://channel/UCjiRpNFwjzChM_WOtT9ZudQ"
+         data-android="intent://channel/UCjiRpNFwjzChM_WOtT9ZudQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fyoutube.com%2F%40maikots;end"
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+        <span>YouTube</span>
+      </a>
+
       <a class="link"
          href="https://wa.me/5511999999999"
          data-deeplink="whatsapp://send?phone=5511999999999"
@@ -172,7 +364,6 @@
         <span>WhatsApp</span>
       </a>
 
-      <!-- E-MAIL -->
       <a class="link" href="mailto:maiko.t.s.ofc@gmail.com">
         <i class="fa-solid fa-envelope"></i>
         <span>E-mail</span>
@@ -180,11 +371,28 @@
 
     </div>
 
+    <button class="share-btn" id="shareBtn" type="button">
+      <i class="fa-solid fa-share-nodes"></i>
+      Compartilhar este perfil
+    </button>
+
     <footer>© 2026 MAIKOTS</footer>
   </div>
 
+  <div class="toast" id="toast"></div>
+
   <script>
-    // ---------- 1) Detecta navegador interno do Instagram/Facebook/TikTok ----------
+    /* ================= TOAST ================= */
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    /* ================= INAPP BANNER ================= */
     const ua = navigator.userAgent || '';
     const isInApp = /Instagram|FBAN|FBAV|FB_IAB|TikTok/i.test(ua);
 
@@ -195,44 +403,137 @@
     function copyLink() {
       const url = window.location.href;
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => {
-          alert('Link copiado! Cole no seu navegador (Chrome/Safari) para abrir os apps.');
-        });
+        navigator.clipboard.writeText(url).then(() => showToast('Link copiado! 📋'));
       } else {
         prompt('Copie o link:', url);
       }
     }
 
-    // ---------- 2) Deep links para abrir o app ----------
+    /* ================= CONTADOR + LIKES (Abacus) ================= */
+    const NS  = 'maikots-social-biu';
+    const API = 'https://abacus.jasoncameron.dev';
+
+    // -- Visitas --
+    (async function initVisits() {
+      const el = document.getElementById('visitCount');
+      try {
+        let url;
+        if (sessionStorage.getItem('maikots_visited')) {
+          url = `${API}/get/${NS}/visits`;
+        } else {
+          url = `${API}/hit/${NS}/visits`;
+          sessionStorage.setItem('maikots_visited', '1');
+        }
+        const res  = await fetch(url);
+        const data = await res.json();
+        if (data && typeof data.value === 'number') {
+          el.textContent = data.value.toLocaleString('pt-BR');
+        }
+      } catch (e) {
+        el.textContent = '—';
+      }
+    })();
+
+    // -- Curtidas --
+    (async function initLikes() {
+      const btn   = document.getElementById('likeBtn');
+      const icon  = document.getElementById('likeIcon');
+      const count = document.getElementById('likeCount');
+      const hasLiked = () => localStorage.getItem('maikots_liked') === '1';
+
+      // Estado visual inicial
+      if (hasLiked()) {
+        btn.classList.add('liked');
+        icon.classList.replace('fa-regular', 'fa-solid');
+      }
+
+      // Busca contagem atual
+      try {
+        const res  = await fetch(`${API}/get/${NS}/likes`);
+        const data = await res.json();
+        if (data && typeof data.value === 'number') {
+          count.textContent = data.value.toLocaleString('pt-BR');
+        }
+      } catch (e) {
+        count.textContent = '0';
+      }
+
+      // Clique
+      btn.addEventListener('click', async () => {
+        if (hasLiked()) {
+          showToast('Você já curtiu! ❤️');
+          return;
+        }
+        localStorage.setItem('maikots_liked', '1');
+        btn.classList.add('liked');
+        icon.classList.replace('fa-regular', 'fa-solid');
+
+        try {
+          const res  = await fetch(`${API}/hit/${NS}/likes`);
+          const data = await res.json();
+          if (data && typeof data.value === 'number') {
+            count.textContent = data.value.toLocaleString('pt-BR');
+          }
+          showToast('Obrigado pela curtida! ❤️');
+        } catch (e) {
+          const cur = parseInt(count.textContent.replace(/\D/g, '')) || 0;
+          count.textContent = (cur + 1).toLocaleString('pt-BR');
+          showToast('Obrigado pela curtida! ❤️');
+        }
+      });
+    })();
+
+    /* ================= COMPARTILHAR ================= */
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const data = {
+        title: 'Maiko.TS | Info',
+        text:  'Confira meus links!',
+        url:   window.location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) { /* cancelado */ }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('Link copiado! 📋');
+        } catch (e) {
+          prompt('Copie o link:', window.location.href);
+        }
+      }
+    });
+
+    /* ================= RIPPLE ================= */
+    document.querySelectorAll('.link, .like-btn, .share-btn').forEach(el => {
+      el.addEventListener('click', function (e) {
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    /* ================= DEEP LINKS ================= */
     document.querySelectorAll('a[data-deeplink]').forEach(link => {
       link.addEventListener('click', function (e) {
         const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (!isMobile) return; // No PC abre o link web normal
-
-        // No navegador interno do Instagram, deep links costumam ser bloqueados.
-        // Deixa o link web funcionar normalmente.
+        if (!isMobile) return;
         if (isInApp) return;
 
         e.preventDefault();
-
         let targetUrl = this.dataset.deeplink;
-
-        // Android: usa intent:// (abre o pacote oficial do app)
         if (/Android/i.test(navigator.userAgent) && this.dataset.android) {
           targetUrl = this.dataset.android;
         }
-
         const fallbackUrl = this.href;
-
-        // Tenta abrir o app
         window.location.href = targetUrl;
-
-        // Fallback: se o app não abrir em 1.5s, volta para o link web
-        setTimeout(() => {
-          window.location.href = fallbackUrl;
-        }, 1500);
+        setTimeout(() => { window.location.href = fallbackUrl; }, 1500);
       });
     });
   </script>
 </body>
-</html>
+  </html>
