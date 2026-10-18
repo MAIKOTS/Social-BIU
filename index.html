@@ -6,7 +6,6 @@
   <title>Maiko.TS | Info</title>
   <meta name="description" content="Informacoes e link para meus outros perfis">
 
-  <!-- Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -45,7 +44,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* FOTO */
     .avatar {
       width: 130px;
       height: 130px;
@@ -57,17 +55,9 @@
       margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
 
-    .username {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
+    .username { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
 
     .bio {
       font-size: 0.95rem;
@@ -77,12 +67,7 @@
       padding: 0 10px;
     }
 
-    /* LINKS */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .links { display: flex; flex-direction: column; gap: 14px; }
 
     .link {
       display: flex;
@@ -100,11 +85,7 @@
       transition: all 0.25s ease;
     }
 
-    .link i {
-      font-size: 1.3rem;
-      width: 26px;
-      text-align: center;
-    }
+    .link i { font-size: 1.3rem; width: 26px; text-align: center; }
 
     .link:hover {
       transform: translateY(-3px);
@@ -115,20 +96,44 @@
 
     .link:active { transform: translateY(-1px); }
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.8rem;
-      color: var(--muted);
+    footer { margin-top: 40px; font-size: 0.8rem; color: var(--muted); }
+
+    /* Aviso do navegador interno do Instagram */
+    .inapp-banner {
+      display: none;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: #fbcfe8;
+      line-height: 1.4;
+    }
+    .inapp-banner.show { display: block; }
+    .inapp-banner button {
+      margin-top: 8px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- FOTO: troque o link abaixo pela sua imagem -->
-    <img class="avatar"
-         src="assets/ft_perfil/maikots.ofc.png"
-         alt="Foto de perfil">
+    <div class="inapp-banner" id="inappBanner">
+      Você está no navegador do Instagram. Para abrir os apps corretamente, toque em <b>⋮ → Abrir no navegador</b>.
+      <br>
+      <button onclick="copyLink()">Copiar link</button>
+    </div>
+
+    <img class="avatar" src="assets/ft_perfil/maikots.ofc.png" alt="Foto de perfil">
 
     <h1>Maiko Tavares</h1>
     <p class="username">@maikots.ofc</p>
@@ -140,44 +145,95 @@
 
     <div class="links">
 
-  <!-- INSTAGRAM -->
-  <a class="link" 
-     href="https://www.instagram.com/maikots.ofc" 
-     data-deeplink="instagram://user?username=maikots.ofc"
-     target="_blank" rel="noopener">
-    <i class="fa-brands fa-instagram"></i>
-    <span>Instagram</span>
- </a>
+      <!-- INSTAGRAM -->
+      <a class="link"
+         href="https://www.instagram.com/maikots.ofc"
+         data-deeplink="instagram://user?username=maikots.ofc"
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
 
-  <!-- YOUTUBE -->
-<a class="link" 
-   href="https://youtube.com/@maikots" 
-   data-deeplink="vnd.youtube://channel/UCjiRpNFwjzChM_WOtT9ZudQ" 
-   data-android="intent://channel/UCjiRpNFwjzChM_WOtT9ZudQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fyoutube.com%2F%40maikots;end"
-   target="_blank" rel="noopener">
-  <i class="fa-brands fa-youtube"></i>
-  <span>YouTube</span>
-</a>
+      <!-- YOUTUBE -->
+      <a class="link"
+         href="https://youtube.com/@maikots"
+         data-deeplink="vnd.youtube://channel/UCjiRpNFwjzChM_WOtT9ZudQ"
+         data-android="intent://channel/UCjiRpNFwjzChM_WOtT9ZudQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fyoutube.com%2F%40maikots;end"
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+        <span>YouTube</span>
+      </a>
 
-  <!-- WHATSAPP -->
-  <a class="link" 
-     href="https://wa.me/5511999999999" 
-     data-deeplink="whatsapp://send?phone=5511999999999"
-     target="_blank" rel="noopener">
-    <i class="fa-brands fa-whatsapp"></i>
-    <span>WhatsApp</span>
-  </a>
+      <!-- WHATSAPP (⚠️ troque o número abaixo) -->
+      <a class="link"
+         href="https://wa.me/5511999999999"
+         data-deeplink="whatsapp://send?phone=5511999999999"
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
 
-  <!-- E-MAIL -->
-  <a class="link" 
-     href="mailto:maiko.t.s.ofc@gmail.com">
-    <i class="fa-solid fa-envelope"></i>
-    <span>E-mail</span>
-  </a>
+      <!-- E-MAIL -->
+      <a class="link" href="mailto:maiko.t.s.ofc@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span>E-mail</span>
+      </a>
 
-</div>
+    </div>
 
     <footer>© 2026 MAIKOTS</footer>
   </div>
+
+  <script>
+    // ---------- 1) Detecta navegador interno do Instagram/Facebook/TikTok ----------
+    const ua = navigator.userAgent || '';
+    const isInApp = /Instagram|FBAN|FBAV|FB_IAB|TikTok/i.test(ua);
+
+    if (isInApp) {
+      document.getElementById('inappBanner').classList.add('show');
+    }
+
+    function copyLink() {
+      const url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link copiado! Cole no seu navegador (Chrome/Safari) para abrir os apps.');
+        });
+      } else {
+        prompt('Copie o link:', url);
+      }
+    }
+
+    // ---------- 2) Deep links para abrir o app ----------
+    document.querySelectorAll('a[data-deeplink]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (!isMobile) return; // No PC abre o link web normal
+
+        // No navegador interno do Instagram, deep links costumam ser bloqueados.
+        // Deixa o link web funcionar normalmente.
+        if (isInApp) return;
+
+        e.preventDefault();
+
+        let targetUrl = this.dataset.deeplink;
+
+        // Android: usa intent:// (abre o pacote oficial do app)
+        if (/Android/i.test(navigator.userAgent) && this.dataset.android) {
+          targetUrl = this.dataset.android;
+        }
+
+        const fallbackUrl = this.href;
+
+        // Tenta abrir o app
+        window.location.href = targetUrl;
+
+        // Fallback: se o app não abrir em 1.5s, volta para o link web
+        setTimeout(() => {
+          window.location.href = fallbackUrl;
+        }, 1500);
+      });
+    });
+  </script>
 </body>
 </html>
