@@ -434,54 +434,15 @@
       }
     })();
 
-    // -- Curtidas --
-    (async function initLikes() {
-      const btn   = document.getElementById('likeBtn');
-      const icon  = document.getElementById('likeIcon');
-      const count = document.getElementById('likeCount');
-      const hasLiked = () => localStorage.getItem('maikots_liked') === '1';
-
-      // Estado visual inicial
-      if (hasLiked()) {
-        btn.classList.add('liked');
-        icon.classList.replace('fa-regular', 'fa-solid');
-      }
-
-      // Busca contagem atual
-      try {
-        const res  = await fetch(`${API}/get/${NS}/likes`);
-        const data = await res.json();
-        if (data && typeof data.value === 'number') {
-          count.textContent = data.value.toLocaleString('pt-BR');
-        }
-      } catch (e) {
-        count.textContent = '0';
-      }
-
-      // Clique
-      btn.addEventListener('click', async () => {
-        if (hasLiked()) {
-          showToast('Você já curtiu! ❤️');
-          return;
-        }
-        localStorage.setItem('maikots_liked', '1');
-        btn.classList.add('liked');
-        icon.classList.replace('fa-regular', 'fa-solid');
-
-        try {
-          const res  = await fetch(`${API}/hit/${NS}/likes`);
-          const data = await res.json();
-          if (data && typeof data.value === 'number') {
-            count.textContent = data.value.toLocaleString('pt-BR');
-          }
-          showToast('Obrigado pela curtida! ❤️');
-        } catch (e) {
-          const cur = parseInt(count.textContent.replace(/\D/g, '')) || 0;
-          count.textContent = (cur + 1).toLocaleString('pt-BR');
-          showToast('Obrigado pela curtida! ❤️');
-        }
-      });
-    })();
+    <!-- INSTAGRAM -->
+<a class="link"
+   href="https://www.instagram.com/maikots.ofc"
+   data-deeplink="instagram://user?username=maikots.ofc"
+   data-android="intent://www.instagram.com/maikots.ofc/#Intent;package=com.instagram.android;scheme=https;end"
+   target="_blank" rel="noopener">
+  <i class="fa-brands fa-instagram"></i>
+  <span>Instagram</span>
+</a>
 
     /* ================= COMPARTILHAR ================= */
     document.getElementById('shareBtn').addEventListener('click', async () => {
