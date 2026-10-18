@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maiko.TS | Info</title>
+  <meta name="description" content="Informacoes e link para meus outros perfis">
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg1: #1a1a2e;
+      --bg2: #16213e;
+      --accent: #a855f7;
+      --accent2: #ec4899;
+      --card: rgba(255, 255, 255, 0.06);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FOTO */
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid transparent;
+      background: linear-gradient(var(--bg1), var(--bg1)) padding-box,
+                  linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .username {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-bottom: 32px;
+      padding: 0 10px;
+    }
+
+    /* LINKS */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+    }
+
+    .link i {
+      font-size: 1.3rem;
+      width: 26px;
+      text-align: center;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: transparent;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+    }
+
+    .link:active { transform: translateY(-1px); }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- FOTO: troque o link abaixo pela sua imagem -->
+    <img class="avatar"
+         src="assets/ft_perfil/maikots.png"
+         alt="Foto de perfil">
+
+    <h1>Maiko Tavares</h1>
+    <p class="username">@maikots.ofc</p>
+    <p class="bio">
+      Dev/Modder/Android<br>
+      Quebrando as limitações<br>
+      📍 Ceará, Brasil
+    </p>
+
+    <div class="links">
+
+  <!-- INSTAGRAM -->
+  <a class="link" 
+     href="https://www.instagram.com/maikots.ofc" 
+     data-deeplink="instagram://user?username=maikots.ofc"
+     target="_blank" rel="noopener">
+    <i class="fa-brands fa-instagram"></i>
+    <span>Instagram</span>
+  </a>
+
+  <!-- YOUTUBE -->
+  <a class="link" 
+     href="https://youtube.com/@MAIKOTS" 
+     data-deeplink="vnd.youtube://" 
+     data-android="intent://www.youtube.com/@MAIKOTS#Intent;scheme=https;package=com.google.android.youtube;end"
+     target="_blank" rel="noopener">
+    <i class="fa-brands fa-youtube"></i>
+    <span>YouTube</span>
+  </a>
+
+  <!-- WHATSAPP -->
+  <a class="link" 
+     href="https://wa.me/5511999999999" 
+     data-deeplink="whatsapp://send?phone=5511999999999"
+     target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- E-MAIL -->
+  <a class="link" 
+     href="mailto:maiko.t.s.ofc@gmail.com">
+    <i class="fa-solid fa-envelope"></i>
+    <span>E-mail</span>
+  </a>
+
+</div>
+
+    <footer>© 2025 MAIKOTS</footer>
+  </div>
+</body>
+</html>
