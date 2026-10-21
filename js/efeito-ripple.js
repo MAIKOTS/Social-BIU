@@ -1,6 +1,3 @@
-// ==========================================
-// EFEITO RIPPLE (ONDA AO CLICAR)
-// ==========================================
 function iniciarRipple() {
   document.querySelectorAll('.link, .like-btn, .share-btn').forEach(el => {
     el.addEventListener('click', function (e) {
@@ -18,12 +15,3 @@ function iniciarRipple() {
     });
   });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  iniciarBannerApp();
-  iniciarVisitas();
-  iniciarCurtidas();
-  // iniciarLinksApp();  <-- REMOVIDO
-  iniciarCompartilhar();
-  iniciarRipple();
-});
