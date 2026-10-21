@@ -484,22 +484,42 @@
     });
 
     /* ================= DEEP LINKS ================= */
-    document.querySelectorAll('a[data-deeplink]').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (!isMobile) return;
-        if (isInApp) return;
+document.querySelectorAll('a[data-deeplink]').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (!isMobile) return;       // Desktop: segue o href normal (wa.me)
+    if (isInApp) return;         // Instagram/FB/TikTok: fallback via banner
 
-        e.preventDefault();
-        let targetUrl = this.dataset.deeplink;
-        if (/Android/i.test(navigator.userAgent) && this.dataset.android) {
-          targetUrl = this.dataset.android;
-        }
-        const fallbackUrl = this.href;
-        window.location.href = targetUrl;
-        setTimeout(() => { window.location.href = fallbackUrl; }, 1500);
-      });
-    });
+    e.preventDefault();
+
+    let targetUrl = this.dataset.deeplink;
+    if (/Android/i.test(navigator.userAgent) && this.dataset.android) {
+      targetUrl = this.dataset.android;
+    }
+    const fallbackUrl = this.href;
+
+    // Detecta se o app abriu (página ficou oculta)
+    let appOpened = false;
+    const onHide = () => { if (document.hidden) appOpened = true; };
+    document.addEventListener('visibilitychange', onHide);
+
+    // Blur também indica troca de app (iOS usa isso)
+    const onBlur = () => { appOpened = true; };
+    window.addEventListener('blur', onBlur, { once: true });
+
+    // Tenta abrir o app
+    window.location.href = targetUrl;
+
+    // Só usa o site como fallback se o app NÃO abriu
+    setTimeout(() => {
+      document.removeEventListener('visibilitychange', onHide);
+      window.removeEventListener('blur', onBlur);
+      if (!appOpened && !document.hidden) {
+        window.location.href = fallbackUrl;
+      }
+    }, 1800);
+  });
+});
   </script>
 </body>
 </html></div>
