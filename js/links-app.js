@@ -1,10 +1,17 @@
-/* Abre os apps nativos quando possível (com fallback inteligente) */
-import { estaEmApp, ehCelular, ehAndroid } from './deteccao-navegador.js';
+// ==========================================
+// LINKS DE APLICATIVOS (DEEP LINKS)
+// Arquivo isolado e auto-inicializável
+// ==========================================
+(function () {
+  // Detecta o ambiente localmente (sem depender do script.js)
+  const ua = navigator.userAgent || '';
+  const estaEmApp = /Instagram|FBAN|FBAV|FB_IAB|TikTok/i.test(ua);
+  const ehCelular = /Android|iPhone|iPad|iPod/i.test(ua);
+  const ehAndroid = /Android/i.test(ua);
 
-export function iniciarLinksApp() {
   document.querySelectorAll('a[data-deeplink]').forEach(link => {
     link.addEventListener('click', function (e) {
-      if (!ehCelular) return;  // Desktop: usa href normal
+      if (!ehCelular) return;  // Desktop: usa o href normal
       if (estaEmApp)  return;  // Instagram/FB/TikTok: banner já orienta
 
       e.preventDefault();
@@ -15,7 +22,7 @@ export function iniciarLinksApp() {
       }
       const urlFallback = this.href;
 
-      /* Detecta se o app abriu (página fica oculta ou perde foco) */
+      // Detecta se o app abriu (página oculta ou perdeu foco)
       let appAbriu = false;
       const aoEsconder = () => { if (document.hidden) appAbriu = true; };
       document.addEventListener('visibilitychange', aoEsconder);
@@ -23,10 +30,10 @@ export function iniciarLinksApp() {
       const aoDesfocar = () => { appAbriu = true; };
       window.addEventListener('blur', aoDesfocar, { once: true });
 
-      /* Tenta abrir o app */
+      // Tenta abrir o app
       window.location.href = urlDestino;
 
-      /* Só cai no site se o app NÃO abriu */
+      // Só cai no site se o app NÃO abriu
       setTimeout(() => {
         document.removeEventListener('visibilitychange', aoEsconder);
         window.removeEventListener('blur', aoDesfocar);
@@ -36,4 +43,4 @@ export function iniciarLinksApp() {
       }, 1800);
     });
   });
-}
+})();
