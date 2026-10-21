@@ -35,7 +35,7 @@ document.addEventListener('htmlPronto', () => {
         if (!appAbriu && !document.hidden) {
           window.location.href = urlFallback;
         }
-      }, 1800);
+      }, 2500);
     });
   });
 });
