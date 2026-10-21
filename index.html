@@ -16,22 +16,24 @@
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/animacoes.css">
 
-  <!-- CARREGADOR DE HTML (Precisa ser o primeiro) -->
+  <!-- 1. CARREGADOR DE HTML (Precisa ser o primeiro) -->
   <script src="js/carregar-html.js" defer></script>
-  
-  <!-- Seus outros scripts -->
+
+  <!-- 2. CONFIGURAÇÕES E MÓDULOS (Apenas criam as funções) -->
   <script src="js/configs-e-variaveis-globais.js" defer></script>
-  <script src="js/script.js" defer></script>
-  <script src="js/links-apps.js" defer></script>
-  <script src="js/contadores.js" defer></script>
-  <script src="js/efeito-ripple.js" defer></script>
-  <script src="js/compartilhar.js" defer></script>
   <script src="js/toast.js" defer></script>
   <script src="js/banner-in-app.js" defer></script>
+  <script src="js/contadores.js" defer></script>
+  <script src="js/compartilhar.js" defer></script>
+  <script src="js/efeito-ripple.js" defer></script>
+  <script src="js/links-apps.js" defer></script>
+
+  <!-- 3. O MAESTRO (Inicia tudo quando o HTML estiver pronto) -->
+  <script src="js/principal.js" defer></script>
 </head>
 <body>
   <div class="container">
-    <!-- Aqui os componentes serão injetados -->
+    <!-- Aqui os componentes serão injetados pelo carregar-html.js -->
     <div data-include="componentes/banner-in-app.html"></div>
     <div data-include="componentes/cabecalho.html"></div>
     <div data-include="componentes/estatisticas.html"></div>
@@ -39,6 +41,7 @@
     <div data-include="componentes/rodape.html"></div>
   </div>
 
+  <!-- Aviso flutuante (Toast) fica fora do container -->
   <div class="toast" id="toast"></div>
 </body>
 </html>
