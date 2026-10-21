@@ -175,14 +175,11 @@ function iniciarRipple() {
   });
 }
 
-// ==========================================
-// INICIALIZAÇÃO
-// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   iniciarBannerApp();
   iniciarVisitas();
   iniciarCurtidas();
-  iniciarLinksApp();
+  // iniciarLinksApp();  <-- REMOVIDO
   iniciarCompartilhar();
   iniciarRipple();
 });
