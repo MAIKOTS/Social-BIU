@@ -6,25 +6,23 @@
   <title>Maiko.TS | Info</title>
   <meta name="description" content="Informações e links para meus outros perfis">
 
-<!-- ÍCONE DO SITE -->
-<link rel="icon" type="image/png" href="assets/ft_perfil/maikots.ofc.png">
-
-<!-- ÍCONE PARA QUANDO O USUÁRIO SALVA NA TELA INICIAL DO CELULAR (iOS) -->
-<link rel="apple-touch-icon" href="assets/ft_perfil/maikots.ofc.png">
-
-<!-- COR DA BARRA DO NAVEGADOR NO CELULAR (Android/Chrome) -->
-<meta name="theme-color" content="#1a1a2e">
+  <link rel="icon" type="image/png" href="assets/ft_perfil/maikots.ofc.png">
+  <link rel="apple-touch-icon" href="assets/ft_perfil/maikots.ofc.png">
+  <meta name="theme-color" content="#1a1a2e">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <link rel="stylesheet" href="css/variaveis.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/animacoes.css">
 
+  <!-- CARREGADOR DE HTML (Precisa ser o primeiro) -->
+  <script src="js/carregar-html.js" defer></script>
+  
+  <!-- Seus outros scripts -->
+  <script src="js/configs-e-variaveis-globais.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/links-apps.js" defer></script>
-  <script src="js/configs-e-variaveis-globais.js" defer></script>
   <script src="js/contadores.js" defer></script>
   <script src="js/efeito-ripple.js" defer></script>
   <script src="js/compartilhar.js" defer></script>
@@ -33,73 +31,12 @@
 </head>
 <body>
   <div class="container">
-
-    <div class="inapp-banner" id="inappBanner">
-      Você está no navegador do Instagram. Para abrir os apps corretamente, toque em <b>⋮ → Abrir no navegador</b>.
-      <br>
-      <button type="button" id="btnCopiarBanner">Copiar link</button>
-    </div>
-
-    <img class="avatar" src="assets/ft_perfil/maikots.ofc.png" alt="Foto de perfil">
-
-    <h1>Maiko Tavares</h1>
-    <p class="username">@maikots.ofc</p>
-    <p class="bio">
-      Dev/Modder/Android<br>
-      Quebrando as limitações<br>
-      📍 Ceará, Brasil
-    </p>
-
-    <div class="stats">
-      <div class="stat-chip" title="Visitas no site">
-        <i class="fa-solid fa-eye"></i>
-        <strong id="visitCount">—</strong>
-      </div>
-      <button class="like-btn" id="likeBtn" type="button" title="Curtir perfil">
-        <i class="fa-regular fa-heart" id="likeIcon"></i>
-        <strong id="likeCount">—</strong>
-      </button>
-    </div>
-
-    <div class="links">
-      <a class="link"
-         href="https://www.instagram.com/maikots.ofc"
-         data-deeplink="instagram://user?username=maikots.ofc"
-         data-android="intent://www.instagram.com/maikots.ofc/#Intent;package=com.instagram.android;scheme=https;end"
-         target="_blank" rel="noopener">
-        <i class="fa-brands fa-instagram"></i>
-        <span>Instagram</span>
-      </a>
-
-      <a class="link"
-         href="https://youtube.com/@maikots"
-         data-deeplink="vnd.youtube://channel/UCjiRpNFwjzChM_WOtT9ZudQ"
-         data-android="intent://channel/UCjiRpNFwjzChM_WOtT9ZudQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=https%3A%2F%2Fyoutube.com%2F%40maikots;end"
-         target="_blank" rel="noopener">
-        <i class="fa-brands fa-youtube"></i>
-        <span>YouTube</span>
-      </a>
-
-      <a class="link"
-         href="https://wa.me/5585992683680"
-         data-deeplink="whatsapp://send?phone=5585992683680"
-         target="_blank" rel="noopener">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span>WhatsApp</span>
-      </a>
-
-      <a class="link" href="mailto:maiko.t.s.ofc@gmail.com">
-        <i class="fa-solid fa-envelope"></i>
-        <span>E-mail</span>
-      </a>
-    </div>
-
-    <button class="share-btn" id="shareBtn" type="button">
-      <i class="fa-solid fa-share-nodes"></i>
-      Compartilhar este perfil
-    </button>
-
-    <footer>© 2026 MAIKOTS</footer>
+    <!-- Aqui os componentes serão injetados -->
+    <div data-include="componentes/banner-in-app.html"></div>
+    <div data-include="componentes/cabecalho.html"></div>
+    <div data-include="componentes/estatisticas.html"></div>
+    <div data-include="componentes/links.html"></div>
+    <div data-include="componentes/rodape.html"></div>
   </div>
 
   <div class="toast" id="toast"></div>
